@@ -48,7 +48,7 @@ WBGT-Alert-System is an automated temperature monitoring solution that ensures w
 - **Alerts**: Telegram Bot API
 - **Documentation**: Markdown
 
-# 📁 WBGT-Alert-System Project Structure
+## 📁 WBGT-Alert-System Project Structure
 
 ```
 WBGT-Alert-System/
