@@ -119,10 +119,10 @@ WBGT-Alert-System/
 
 Comprehensive guides available in docs folder:
 
-- System Maintenance Guide
-- User Guidelines
-- Additional Features
-- Backup Plans
+- [System Maintenance Guide](./docs/maintenance-guide.md)
+- [User Guidelines](./docs/user-guidelines.md)
+- [Additional Features](./docs/feature-roadmap.md)
+- [Backup Plans](./docs/backup-plan.md)
 
 ## 🔐 Security Features
 
@@ -133,11 +133,11 @@ Comprehensive guides available in docs folder:
 
 ## 🤝 Contributing
 
-Contributions welcome! Please read our contributing guidelines before submitting pull requests.
+Contributions welcome! Please read our contributing guidelines before submitting pull requests. Please read details [contribution guidelines](./CONTRIBUTING.md)
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## 📧 Connect with Me
 
