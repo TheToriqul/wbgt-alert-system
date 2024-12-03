@@ -1,0 +1,50 @@
+{
+    "formId": "[YOUR_FORM_ID]",
+    "formTitle": "DAILY WBGT FORM",
+    "questions": [
+        {
+            "id": "weather_condition",
+            "type": "choice",
+            "title": "WEATHER CONDITION",
+            "required": true,
+            "choices": [
+                "SUNNY",
+                "CLOUDY",
+                "RAINY",
+                "DRIZZLING"
+            ]
+        },
+        {
+            "id": "timing",
+            "type": "choice",
+            "title": "TIMING",
+            "required": true,
+            "choices": [
+                "0930 HOURS",
+                "1030 HOURS",
+                "1130 HOURS",
+                "1230 HOURS",
+                "1330 HOURS",
+                "1430 HOURS",
+                "1530 HOURS",
+                "1630 HOURS"
+            ]
+        },
+        {
+            "id": "temperature",
+            "type": "number",
+            "title": "OUTDOOR WBGT (°C)",
+            "required": true,
+            "validation": {
+                "min": 20,
+                "max": 40
+            }
+        },
+        {
+            "id": "tester",
+            "type": "text",
+            "title": "TESTED BY",
+            "required": true
+        }
+    ]
+}
