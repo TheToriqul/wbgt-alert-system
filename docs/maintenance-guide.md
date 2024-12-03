@@ -86,7 +86,10 @@ Version 1.0 | December 2024
    - Rebuild channel settings
 
 ## Contact Information
-- System Administrator: [Add Contact]
-- IT Support: [Add Contact]
-- Safety Officer: [Add Contact]
-- Telegram Support: [Add Contact]
+- 📧 Email: toriqul.int@gmail.com
+- 📱 Phone: +65 8936 7705, +8801765 939006
+- 🌐 LinkedIn: [@TheToriqul](https://www.linkedin.com/in/thetoriqul/)
+- 🐙 GitHub: [@TheToriqul](https://github.com/TheToriqul)
+- 🌍 Portfolio: [TheToriqul.com](https://thetoriqul.com)
+
+Let's connect and discuss Docker optimization strategies!

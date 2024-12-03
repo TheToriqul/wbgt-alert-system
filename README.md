@@ -2,9 +2,14 @@
 
 ### Automated Heat Stress Monitoring & Alert System for Industrial Safety
 
+[![GitHub forks](https://img.shields.io/github/forks/TheToriqul/wbgt-alert-system?style=for-the-badge)](https://github.com/TheToriqul/wbgt-alert-system/network)
+[![GitHub stars](https://img.shields.io/github/stars/TheToriqul/wbgt-alert-system?style=for-the-badge)](https://github.com/TheToriqul/wbgt-alert-system/stargazers)
 [![Microsoft Forms](https://img.shields.io/badge/Microsoft-Forms-2B579A?style=for-the-badge&logo=microsoft&logoColor=white)](https://www.microsoft.com/en-us/microsoft-365/forms)
 [![Power Automate](https://img.shields.io/badge/Power-Automate-0066FF?style=for-the-badge&logo=power-automate&logoColor=white)](https://flow.microsoft.com/)
 [![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://telegram.org/)
+[![Google Forms](https://img.shields.io/badge/Google-Forms-0F9D58?style=for-the-badge&logo=google&logoColor=white)](https://www.google.com/forms/about/)
+[![Apps Script](https://img.shields.io/badge/Google-Apps%20Script-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://www.google.com/script/start/)
+
 
 ## 📋 Overview
 
