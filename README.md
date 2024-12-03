@@ -30,11 +30,11 @@ WBGT-Alert-System is an automated temperature monitoring solution that ensures w
 
 ## 💡 Alert Levels and Actions
 
-| Level    | Temperature | Alert | Guidelines                                                                          |
-| -------- | ----------- | ----- | ----------------------------------------------------------------------------------- |
-| HIGH     | ≥33°C       | ☀️☀️  | - Minimize outdoor activities<br>- 15-minute breaks hourly<br>- Mandatory hydration |
-| MODERATE | ≥31°C       | 🌤️    | - Reduce outdoor activities<br>- 10-minute breaks hourly<br>- Regular hydration     |
-| LOW      | <31°C       | 🌥️    | - Normal activities<br>- Regular breaks<br>- Standard hydration                     |
+| **Level**   | **Temp.** | **Alert** | **Guidelines**                                                                      |
+|-------------|-----------|-----------|------------------------------------------------------------------------------------|
+| **HIGH**    | ≥33°C     | ☀️☀️        | - Minimize outdoor activities<br>- 15-min breaks hourly<br>- Mandatory hydration  |
+| **MODERATE**| ≥31°C     | 🌤️         | - Reduce outdoor activities<br>- 10-min breaks hourly<br>- Regular hydration      |
+| **LOW**     | <31°C     | 🌥️         | - Normal activities<br>- Regular breaks<br>- Standard hydration                   |
 
 ## 🛠️ Technology Stack
 
