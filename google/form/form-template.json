@@ -1,0 +1,71 @@
+{
+  "title": "MOM WBGT Reading Form V1.0",
+  "description": "Form to collect Wet Bulb Globe Temperature (WBGT) readings for monitoring heat stress levels.",
+  "documentTitle": "WBGT Reading Submission",
+  "items": [
+    {
+      "title": "Temperature",
+      "type": "NUMERIC",
+      "required": true,
+      "validation": {
+        "condition": {
+          "type": "NUMBER_GREATER_THAN_OR_EQUAL_TO",
+          "value": "20"
+        },
+        "condition2": {
+          "type": "NUMBER_LESS_THAN_OR_EQUAL_TO",
+          "value": "40"
+        },
+        "helpText": "Please enter a valid temperature between 20°C and 40°C"
+      },
+      "helpText": "Enter the WBGT reading in °C",
+      "id": "temperature_field"
+    },
+    {
+      "title": "Time",
+      "type": "TIME",
+      "required": true,
+      "helpText": "Enter the time of reading (24-hour format)",
+      "id": "time_field",
+      "includeTime": true,
+      "timeFormat": "HH:mm"
+    },
+    {
+      "title": "Location",
+      "type": "TEXT",
+      "required": false,
+      "helpText": "Enter the location where reading was taken (optional)",
+      "id": "location_field"
+    },
+    {
+      "title": "Remarks",
+      "type": "PARAGRAPH_TEXT",
+      "required": false,
+      "helpText": "Any additional observations or remarks (optional)",
+      "id": "remarks_field"
+    }
+  ],
+  "settings": {
+    "collectEmail": true,
+    "confirmationMessage": "Thank you for submitting the WBGT reading. The information has been recorded and will be sent to the monitoring channel.",
+    "allowResponseEdits": false,
+    "publishingSummary": {
+      "publishAutomatic": false
+    },
+    "quizSettings": {
+      "isQuiz": false
+    }
+  },
+  "triggers": [
+    {
+      "function": "onFormSubmit",
+      "eventType": "ON_FORM_SUBMIT"
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "lastUpdated": "2024-12-03",
+    "category": "Safety Monitoring",
+    "department": "Workplace Safety and Health"
+  }
+}
