@@ -1,0 +1,63 @@
+{
+  "name": "WBGT Alert System",
+  "id": "wbgt_alert_v3.0",
+  "properties": {
+      "connectionReferences": {
+          "shared_microsoftforms": {
+              "connection": {
+                  "id": "[YOUR_FORMS_CONNECTION_ID]"
+              },
+              "api": {
+                  "name": "shared_microsoftforms"
+              }
+          }
+      },
+      "definition": {
+          "$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
+          "actions": {
+              "Initialize_temperature": {
+                  "type": "InitializeVariable",
+                  "inputs": {
+                      "variables": [
+                          {
+                              "name": "temperature",
+                              "type": "float",
+                              "value": "@float(outputs('Get_response_details')?['OUTDOOR WBGT (°C)'])"
+                          }
+                      ]
+                  }
+              },
+              "HTTP_Telegram": {
+                  "type": "Http",
+                  "inputs": {
+                      "method": "POST",
+                      "uri": "https://api.telegram.org/bot[YOUR_BOT_TOKEN]/sendMessage",
+                      "headers": {
+                          "Content-Type": "application/json"
+                      },
+                      "body": {
+                          "chat_id": "[YOUR_CHANNEL_ID]",
+                          "text": "@{variables('message')}",
+                          "parse_mode": "HTML"
+                      }
+                  }
+              }
+          },
+          "triggers": {
+              "When_a_new_response_is_submitted": {
+                  "type": "ApiConnectionWebhook",
+                  "inputs": {
+                      "host": {
+                          "connectionName": "shared_microsoftforms",
+                          "operationId": "OnResponseSubmitted",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms"
+                      },
+                      "parameters": {
+                          "formId": "[YOUR_FORM_ID]"
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
