@@ -1,0 +1,179 @@
+{
+  "name": "WBGT Alert System Backup",
+  "id": "wbgt_alert_backup_v3.0",
+  "properties": {
+      "connectionReferences": {
+          "shared_microsoftforms": {
+              "connection": {
+                  "id": "[YOUR_FORMS_CONNECTION_ID]"
+              },
+              "api": {
+                  "name": "shared_microsoftforms"
+              }
+          }
+      },
+      "definition": {
+          "$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
+          "actions": {
+              "Initialize_temperature": {
+                  "type": "InitializeVariable",
+                  "inputs": {
+                      "variables": [
+                          {
+                              "name": "temperature",
+                              "type": "float",
+                              "value": "@float(outputs('Get_response_details')?['OUTDOOR WBGT (°C)'])"
+                          }
+                      ]
+                  }
+              },
+              "Initialize_stressLevel": {
+                  "type": "InitializeVariable",
+                  "inputs": {
+                      "variables": [
+                          {
+                              "name": "stressLevel",
+                              "type": "string",
+                              "value": null
+                          }
+                      ]
+                  }
+              },
+              "Initialize_guidelines": {
+                  "type": "InitializeVariable",
+                  "inputs": {
+                      "variables": [
+                          {
+                              "name": "guidelines",
+                              "type": "string",
+                              "value": null
+                          }
+                      ]
+                  }
+              },
+              "Initialize_message": {
+                  "type": "InitializeVariable",
+                  "inputs": {
+                      "variables": [
+                          {
+                              "name": "message",
+                              "type": "string",
+                              "value": null
+                          }
+                      ]
+                  }
+              },
+              "Get_response_details": {
+                  "type": "ApiConnection",
+                  "inputs": {
+                      "host": {
+                          "connection": {
+                              "name": "@parameters('$connections')['shared_microsoftforms']['connectionId']"
+                          }
+                      },
+                      "method": "get",
+                      "path": "/datasets/@{encodeURIComponent(encodeURIComponent('[YOUR_FORM_ID]'))}/responses/@{encodeURIComponent(triggerOutputs()?['body/resourceData/responseId'])}"
+                  }
+              },
+              "Condition_HIGH": {
+                  "type": "If",
+                  "expression": "@greater(variables('temperature'), 33)",
+                  "actions": {
+                      "Set_HIGH_level": {
+                          "type": "SetVariable",
+                          "inputs": {
+                              "name": "stressLevel",
+                              "value": "☀☀ HIGH ☀☀"
+                          }
+                      },
+                      "Set_HIGH_guidelines": {
+                          "type": "SetVariable",
+                          "inputs": {
+                              "name": "guidelines",
+                              "value": "ACTIVITY: Minimize outdoor activities. Ensure workers get adequate rest under shade for recovery from heat.\n\nACTION: Rehydrate at least hourly and arrange for 15 mins break for heavy physical work activity."
+                          }
+                      }
+                  },
+                  "else": {
+                      "actions": {
+                          "Condition_MODERATE": {
+                              "type": "If",
+                              "expression": "@greater(variables('temperature'), 31)",
+                              "actions": {
+                                  "Set_MODERATE_level": {
+                                      "type": "SetVariable",
+                                      "inputs": {
+                                          "name": "stressLevel",
+                                          "value": "🌤 MODERATE 🌤"
+                                      }
+                                  },
+                                  "Set_MODERATE_guidelines": {
+                                      "type": "SetVariable",
+                                      "inputs": {
+                                          "name": "guidelines",
+                                          "value": "ACTIVITY: Reduce outdoor activities. Ensure workers get adequate rest under shade for recovery from heat.\n\nACTION: Rehydrate at least hourly and arrange for 10 mins break for heavy physical work activity."
+                                      }
+                                  }
+                              },
+                              "else": {
+                                  "actions": {
+                                      "Set_LOW_level": {
+                                          "type": "SetVariable",
+                                          "inputs": {
+                                              "name": "stressLevel",
+                                              "value": "🌥 LOW 🌥"
+                                          }
+                                      },
+                                      "Set_LOW_guidelines": {
+                                          "type": "SetVariable",
+                                          "inputs": {
+                                              "name": "guidelines",
+                                              "value": "ACTIVITY: Continue normal activities and ensure workers get adequate rest under shade for recovery from heat.\n\nACTION: Rehydrate regularly."
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "Compose_Message": {
+                  "type": "Compose",
+                  "inputs": "SEATRIUM ADMIRALTY YARD WBGT READING V3.0\n\nHEAT STRESS LEVEL: @{variables('stressLevel')}\n\nDATE: @{formatDateTime(utcNow(), 'dd-MMM-yy')}\nTIME: @{outputs('Get_response_details')?['TIMING']} Hrs\nWBGT Reading = @{variables('temperature')}°C\n\n@{variables('guidelines')}"
+              },
+              "Send_Email_Backup": {
+                  "type": "ApiConnection",
+                  "inputs": {
+                      "host": {
+                          "connection": {
+                              "name": "@parameters('$connections')['office365']['connectionId']"
+                          }
+                      },
+                      "method": "post",
+                      "path": "/v2/Mail",
+                      "body": {
+                          "To": "[YOUR_BACKUP_EMAIL]",
+                          "Subject": "WBGT Alert - Backup Notification",
+                          "Body": "@outputs('Compose_Message')"
+                      }
+                  }
+              }
+          },
+          "triggers": {
+              "When_a_new_response_is_submitted": {
+                  "type": "ApiConnectionWebhook",
+                  "inputs": {
+                      "host": {
+                          "connectionName": "shared_microsoftforms",
+                          "operationId": "OnResponseSubmitted",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms"
+                      },
+                      "parameters": {
+                          "formId": "[YOUR_FORM_ID]"
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
